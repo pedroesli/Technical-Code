@@ -1,18 +1,18 @@
 /*:
  # Linked List
+ A **linked list** is a linear collection of data elements whose order is not given by their physical placement in memory. Instead, *each element points to the next*. It is a data structure consisting of a collection of **nodes** which together represent a sequence.
 
  [A|  ] → [B|  ] → [C|  ] → nil
  
- Head: [|  ]
+ **Node**: [|  ]
  
- Data: A
+ **Data**: A
  
- Next: pointer to next head
+ **Next**: pointer to next head
  
  [Previous](@previous)
  [Next](@next)
  */
-
 import Foundation
 
 class Node<Element> {

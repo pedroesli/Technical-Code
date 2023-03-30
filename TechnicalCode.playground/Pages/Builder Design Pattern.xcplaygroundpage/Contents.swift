@@ -146,15 +146,15 @@ extension UIButton {
 final class MainView: UIViewController {
     
     var button = UIButton
-                    .build()
-                    .style(.filled)
-                    .title("Press me")
-                    .titleFont(UIFont.systemFont(ofSize: UIFont.buttonFontSize, weight: .black))
-                    .titleForegroundColor(.orange)
-                    .subtitle("0")
-                    .image(UIImage(systemName: "arrowshape.right.fill"))
-                    .tintColor(.brown)
-                    .create()
+        .build()
+        .style(.borderedTinted)
+        .title("Press me")
+        .titleFont(UIFont.systemFont(ofSize: UIFont.buttonFontSize, weight: .black))
+        .titleForegroundColor(.orange)
+        .subtitle("0")
+        .image(UIImage(systemName: "arrowshape.right.fill"))
+        .tintColor(.brown)
+        .create()
     
     var count = 0
     

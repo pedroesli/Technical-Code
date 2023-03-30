@@ -31,11 +31,14 @@ class ButtonBuilder {
     
     init(button: UIButton) {
         self.button = button
-        self.button.translatesAutoresizingMaskIntoConstraints = false
-        
-        // Basic style configuration
-        // so button configuration won't be nil
+        configure()
+    }
+    
+    // Basic style configuration
+    // so button configuration won't be nil
+    private func configure() {
         if self.button.configuration == nil {
+            self.button.translatesAutoresizingMaskIntoConstraints = false
             let configuration = UIButton.Configuration.plain().updated(for: self.button)
             self.button.configuration = configuration
         }
@@ -47,17 +50,43 @@ class ButtonBuilder {
     }
     
     func title(_ title: String) -> ButtonBuilder {
-        button.configuration?.title = title
-        return self
+        if let attributedTitle = button.configuration?.attributedTitle {
+            let attributes = attributedTitle.runs.first!.attributes
+            return self.title(attributedTitle: AttributedString(title, attributes: attributes))
+        }
+        return self.title(attributedTitle: AttributedString(title))
     }
     
-    func title(attributedTitle: AttributedString) -> ButtonBuilder {
+    func title(attributedTitle: AttributedString?) -> ButtonBuilder {
         button.configuration?.attributedTitle = attributedTitle
         return self
     }
     
     func subtitle(_ subtitle: String) -> ButtonBuilder {
-        button.configuration?.subtitle = subtitle
+        if let attributedSubtitle = button.configuration?.attributedSubtitle {
+            let attributes = attributedSubtitle.runs.first!.attributes
+            return self.subtitle(attributedSubtitle: AttributedString(subtitle, attributes: attributes))
+        }
+        return self.subtitle(attributedSubtitle: AttributedString(subtitle))
+    }
+    
+    func subtitle(attributedSubtitle: AttributedString?) -> ButtonBuilder {
+        button.configuration?.attributedSubtitle = attributedSubtitle
+        return self
+    }
+    
+    func titleFont(_ font: UIFont) -> ButtonBuilder {
+        button.configuration?.attributedTitle?.font = font
+        return self
+    }
+    
+    func titleForegroundColor(_ color: UIColor) -> ButtonBuilder {
+        button.configuration?.attributedTitle?.foregroundColor = color
+        return self
+    }
+    
+    func subtitleFont(_ font: UIFont) -> ButtonBuilder {
+        button.configuration?.attributedSubtitle?.font = font
         return self
     }
     
@@ -66,10 +95,9 @@ class ButtonBuilder {
         return self
     }
     
-    func action(_ action: @escaping (_ button: UIButton?) -> Void ) -> ButtonBuilder {
+    func action(_ action: @escaping (_ button: UIButton?) -> Void, for: UIControl.Event = .touchUpInside) -> ButtonBuilder {
         button.addAction(UIAction(handler: { uiAction in
-            let button = uiAction.sender as? UIButton
-            action(button)
+            action(uiAction.sender as? UIButton)
         }), for: .touchUpInside)
         return self
     }
@@ -106,7 +134,7 @@ class ButtonBuilder {
 }
 
 extension UIButton {
-    static func modify(buttonType: UIButton.ButtonType = .system) -> ButtonBuilder {
+    static func build(buttonType: UIButton.ButtonType = .system) -> ButtonBuilder {
         return ButtonBuilder(button: UIButton(type: buttonType))
     }
     
@@ -118,12 +146,15 @@ extension UIButton {
 final class MainView: UIViewController {
     
     var button = UIButton
-        .modify()
-        .style(.filled)
-        .title("Press me")
-        .subtitle("0")
-        .image(UIImage(systemName: "arrowshape.right.fill"))
-        .create()
+                    .build()
+                    .style(.filled)
+                    .title("Press me")
+                    .titleFont(UIFont.systemFont(ofSize: UIFont.buttonFontSize, weight: .black))
+                    .titleForegroundColor(.orange)
+                    .subtitle("0")
+                    .image(UIImage(systemName: "arrowshape.right.fill"))
+                    .tintColor(.brown)
+                    .create()
     
     var count = 0
     

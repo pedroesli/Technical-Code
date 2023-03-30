@@ -7,5 +7,6 @@
  
  ### Index
  1. [Linked List](Linked%20List)
+ 2. [Builder Design Pattern](Builder%20Design%20Pattern)
  */
 //: [Next](@next)

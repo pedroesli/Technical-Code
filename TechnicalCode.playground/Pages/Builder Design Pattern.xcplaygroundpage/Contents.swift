@@ -2,7 +2,7 @@
  # Builder Design Pattern
  **Builder** is a creational design pattern that lets you construct complex objects step by step. The pattern allows you to produce different types and representations of an object using the same construction code.
  
- You can find more information about the **builder design patter** [here](https://refactoring.guru/design-patterns/builder), where it will explain what it is and how to implement it.
+ You can find more information about the **builder design patter** here: [Builder](https://refactoring.guru/design-patterns/builder), where it will explain what it is and how to implement it.
  
  ### ButtonBuilder
  I decided to implement this design pattern on a UIButton to demostrate its pottential. But what I made would be considered a mere prototype, because I have only covered the basics of a button.

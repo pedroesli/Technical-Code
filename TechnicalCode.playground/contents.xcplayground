@@ -4,5 +4,6 @@
         <page name='Index'/>
         <page name='Linked List'/>
         <page name='Builder Design Pattern'/>
+        <page name='Dependency Injection'/>
     </pages>
 </playground>

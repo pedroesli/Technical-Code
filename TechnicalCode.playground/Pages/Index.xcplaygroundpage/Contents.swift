@@ -9,6 +9,7 @@
  1. [Linked List](Linked%20List)
  2. [Builder Design Pattern](Builder%20Design%20Pattern)
  3. [Dependency Injection](Dependency%20Injection)
+ 4. [Factory Method](Factory%20Method)
  
  [Next](@next)
  */
